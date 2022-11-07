@@ -70,9 +70,7 @@ export function FormTask({ handleSubmit, handleChangeInput, handleChangeTextArea
 
                     rows={6}
                     cols={5}
-                    onChange={handleChangeTextArea
-                        /* TODO
-                    ((e) => setForm({ ...form, description: e.currentTarget.value }))*/}
+                    onChange={handleChangeTextArea}
                     disabled={isEditable}
                     name='description'
                 />
@@ -84,7 +82,6 @@ export function FormTask({ handleSubmit, handleChangeInput, handleChangeTextArea
                 </footer>
 
                 {formButton}
-
 
             </div>
 

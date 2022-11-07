@@ -1,8 +1,9 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import React, { FormEvent, useCallback, useEffect, useState } from 'react';
+import React, { FormEvent, useCallback, useState } from 'react';
 import { api } from '../services/api';
 import { taskViewtoModel } from '../utils/task-mapper';
 import { TaskModel, TaskView } from '../utils/TypesModel';
+import { DeleteTaskAlertDialog } from './DeleteTaskAlertDialog';
 import { FormButton } from './FormButton';
 import { FormTask } from './FormTask';
 import { Modal } from './Modal';
@@ -63,6 +64,7 @@ export const TaskViewDialog = ({ tasks, children }: Props,) => {
         api.put("task/v1", taskViewtoModel(form)).then((response) => {
             const data: TaskModel = response.data
             window.alert("editado com sucesso" + data.id);
+            window.location.reload();
             setIsOpen(false)
         }
 
@@ -80,7 +82,7 @@ export const TaskViewDialog = ({ tasks, children }: Props,) => {
     }
 
     return (
-        <Modal title="Tarefa" open={children} isOpen={isOpen} onOpenChange={changeStates}>
+        <Modal title="Tarefa" buttonDialog={children} isOpen={isOpen} onOpenChange={changeStates}>
             <FormTask
                 isEditable={isEditable}
                 handleSubmit={handleSubmit}
@@ -88,7 +90,17 @@ export const TaskViewDialog = ({ tasks, children }: Props,) => {
                 handleChangeTextArea={handleChangeInput}
                 tasks={form}
                 formButton={
-                    <FormButton type={isEditable ? "submit" : "button"} title={!isEditable ? 'confirmar' : 'Editar'} onClick={() => { setIsEditable(!isEditable) }} />
+                    <div className='flex justify-between ' >
+                        <DeleteTaskAlertDialog id={form.id} buttonDialog={
+                            <button type='button'
+                                onClick={() => { }}
+                                className='ml-0 bg-red-600 rounded h-12 w-28 text-white hover:bg-red-900'>
+                                Excluir Tarefa
+                            </button>
+                        } />
+                        <FormButton type={isEditable ? "submit" : "button"} title={!isEditable ? 'confirmar' : 'Editar'} onClick={() => { setIsEditable(!isEditable) }} />
+
+                    </div>
                 }
 
             />

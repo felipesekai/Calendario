@@ -8,7 +8,7 @@ export function FormButton({ title, ...rest }: ButtonProps) {
     return (
         <button type='submit'
             {...rest}
-            className='ml-auto bg-slate-800 rounded h-12 w-24 text-white hover:bg-slate-900'>
+            className='ml-auto bg-slate-800 rounded h-12 w-28 text-white hover:bg-slate-900'>
             {title}
         </button>
     );

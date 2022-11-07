@@ -90,10 +90,10 @@ export function RegisterNewTask() {
     //     console.log(newTask)
     // }, [newTask])
     return (
-        <Modal title="Cadastrar nova Tarefa" isOpen={isOpen} onOpenChange={setIsOpen} open={
+        <Modal title="Cadastrar nova Tarefa" isOpen={isOpen} onOpenChange={setIsOpen} buttonDialog={
 
             <button className='flex  hover:bg-slate-500 
-      w-full h-12 justify-center items-center  bg-slate-400 
+      w-full h-full justify-center items-center  bg-slate-400 
       rounded
       '>
                 <Plus size={32} />

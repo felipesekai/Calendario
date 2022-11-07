@@ -3,20 +3,22 @@ import * as Dialog from '@radix-ui/react-dialog';
 
 /* o componente recebe tres paramentros, um é o titulo,
 o filho com o objetivo de reutiluzar o modal para qualquer tipo de vizualização ou inserção rapida de dados,
-e o open é o botão que fará o dialog abrir
+e o buttonDialog é o botão que fará o dialog abrir
 */
 type Props = {
     title: string;
     children: React.ReactNode;
-    open: React.ReactNode;
+    buttonDialog: React.ReactNode;
     isOpen?: boolean
     onOpenChange?: (b: boolean) => void
 }
 // componente dialog 
-export const Modal = ({ children, title, open, isOpen, onOpenChange }: Props) => {
+export const Modal = ({ children, title, buttonDialog, isOpen, onOpenChange }: Props) => {
     return (
         <Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
-            <Dialog.Trigger className='w-full h-full rounded bg-slate-400 hover:bg-slate-500' children={open} />
+            <Dialog.Trigger className='w-full h-full rounded bg-slate-400 hover:bg-slate-500'>
+                {buttonDialog}
+            </Dialog.Trigger>
             <Dialog.Portal >
                 <Dialog.Overlay className='bg-black/60 inset-0 fixed' />
 
